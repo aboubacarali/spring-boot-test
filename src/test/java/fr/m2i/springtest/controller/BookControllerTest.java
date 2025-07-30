@@ -69,7 +69,4 @@ class BookControllerTest {
                 .andExpect(jsonPath("$.title", is("Nouveau Titre Super")));
     }
 
-
-
-
 }
