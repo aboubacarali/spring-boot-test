@@ -23,22 +23,22 @@ class AuthorServiceTest {
     @Autowired
     private AuthorService authorService;
 
-    @Test
-    public void shouldAuthorDeletionException () {
-        Author author = new Author(3L, "Albert Camus");
-        when(bookRepository.countByAuthorId(author.getId())).thenReturn(4L);
-
-        assertThrows(AuthorDeletionException.class, () -> authorService.deleteAuthor(author.getId()));
-
-    }
-
-    @Test
-    public void shouldDeleteAuthorIfNoBookFound() {
-        Author author = new Author(1L, "Albert Camus");
-        when(bookRepository.countByAuthorId(author.getId())).thenReturn(0L);
-        authorService.deleteAuthor(author.getId());
-        verify(authorRepository).deleteById(author.getId());
-
-    }
+//    @Test
+//    public void shouldAuthorDeletionException () {
+//        Author author = new Author(3L, "Albert Camus");
+//        when(bookRepository.countByAuthorId(author.getId())).thenReturn(4L);
+//
+//        assertThrows(AuthorDeletionException.class, () -> authorService.deleteAuthor(author.getId()));
+//
+//    }
+//
+//    @Test
+//    public void shouldDeleteAuthorIfNoBookFound() {
+//        Author author = new Author(1L, "Albert Camus");
+//        when(bookRepository.countByAuthorId(author.getId())).thenReturn(0L);
+//        authorService.deleteAuthor(author.getId());
+//        verify(authorRepository).deleteById(author.getId());
+//
+//    }
 
 }

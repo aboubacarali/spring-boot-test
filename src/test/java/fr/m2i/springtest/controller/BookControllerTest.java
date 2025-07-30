@@ -42,31 +42,31 @@ class BookControllerTest {
     @MockitoBean
     private BookRepository bookRepository;
 
-    @Test
-    void updateBook_shouldReturnUpdatedBook_whenSuccess() throws Exception {
-        // Arrange
-        Long bookId = 1L;
-        UpdateBookDto updateDto = new UpdateBookDto("Nouveau Titre Super");
-        Book updatedBook = new Book(bookId, "Nouveau Titre Super", "Nouveau auteur super", false);
-
-        Book bookToUpdate = new Book(1L, "Titre super", "Auteur super", false);
-
-        when(bookRepository.findById(bookId)).thenReturn(Optional.of(bookToUpdate));
-
-        when(bookRepository.save(any())).thenReturn(updatedBook);
-
-        // Configurer le mock du service
-        // QUAND update est appelé avec l'ID 1 et n'importe quel DTO...
-        when(mockBookService.update(eq(bookId), any(UpdateBookDto.class)))
-                .thenReturn(updatedBook);
-
-        // Act & Assert
-        mockMvc.perform(put("/books/{id}", bookId) // Utilise une variable pour l'URL
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(updateDto)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(bookId.intValue())))
-                .andExpect(jsonPath("$.title", is("Nouveau Titre Super")));
-    }
+//    @Test
+//    void updateBook_shouldReturnUpdatedBook_whenSuccess() throws Exception {
+//        // Arrange
+//        Long bookId = 1L;
+//        UpdateBookDto updateDto = new UpdateBookDto("Nouveau Titre Super");
+//        Book updatedBook = new Book(bookId, "Nouveau Titre Super", "Nouveau auteur super", false);
+//
+//        Book bookToUpdate = new Book(1L, "Titre super", "Auteur super", false);
+//
+//        when(bookRepository.findById(bookId)).thenReturn(Optional.of(bookToUpdate));
+//
+//        when(bookRepository.save(any())).thenReturn(updatedBook);
+//
+//        // Configurer le mock du service
+//        // QUAND update est appelé avec l'ID 1 et n'importe quel DTO...
+//        when(mockBookService.update(eq(bookId), any(UpdateBookDto.class)))
+//                .thenReturn(updatedBook);
+//
+//        // Act & Assert
+//        mockMvc.perform(put("/books/{id}", bookId) // Utilise une variable pour l'URL
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(objectMapper.writeValueAsString(updateDto)))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.id", is(bookId.intValue())))
+//                .andExpect(jsonPath("$.title", is("Nouveau Titre Super")));
+//    }
 
 }

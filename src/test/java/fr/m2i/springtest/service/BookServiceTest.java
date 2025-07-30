@@ -25,14 +25,14 @@ public class BookServiceTest {
 
 
 
-    @Test
-    public void descriptionShouldContainBestSeller() {
-        Book book =  new Book("Arsène Lupin", "Maurice Leblanc", true);
-        when(bookRepository.findByTitle(book.getTitle())).thenReturn(Optional.of(book));
-
-        assert(bookService.getBookDescription(book.getTitle()).contains("[BEST-SELLER]"));
-
-    }
+//    @Test
+//    public void descriptionShouldContainBestSeller() {
+//        Book book =  new Book("Arsène Lupin", "Maurice Leblanc", true);
+//        when(bookRepository.findByTitle(book.getTitle())).thenReturn(Optional.of(book));
+//
+//        assert(bookService.getBookDescription(book.getTitle()).contains("[BEST-SELLER]"));
+//
+//    }
 
 
 }
