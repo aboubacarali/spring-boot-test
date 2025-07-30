@@ -1,7 +1,9 @@
 package fr.m2i.springtest.service;
 
+import fr.m2i.springtest.dto.UpdateBookDto;
 import fr.m2i.springtest.entity.Book;
 import fr.m2i.springtest.repository.BookRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -25,5 +27,12 @@ public class BookService {
             description += " [BEST-SELLER]";
         }
         return description;
+    }
+
+
+    public Book update(Long id, @Valid UpdateBookDto bookDto) {
+        Optional<Book> bookToUpdate = bookRepository.findById(id);
+        bookToUpdate.ifPresent(book -> book.setTitle(bookDto.getTitle()));
+        return bookRepository.save(bookToUpdate );
     }
 }
