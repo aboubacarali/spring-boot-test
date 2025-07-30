@@ -2,6 +2,7 @@ package fr.m2i.springtest.service;
 
 import fr.m2i.springtest.dto.UpdateBookDto;
 import fr.m2i.springtest.entity.Book;
+import fr.m2i.springtest.exception.BookNotFoundException;
 import fr.m2i.springtest.repository.BookRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BookService {
     private final BookRepository bookRepository;
+
+    public Book getBookById (Long id) {
+        Optional<Book> book = bookRepository.findById(id);
+        if (book.isEmpty()) {
+            throw new BookNotFoundException("Livre non trouvé");
+        }
+        return book.get();
+    }
 
 
 }
